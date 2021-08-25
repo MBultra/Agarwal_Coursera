@@ -9,44 +9,49 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
- *
- * <Add Extended Description Here>
- *
+ * @file stats.c 
+ * @brief calculate statistics of the given data in form of array. 
  * @author Hardik Agarwal
- * @date  August 23,2021
- *
+ * @date  August 25,2021
  */
-
-
 
 #include <stdio.h>
 #include "stats.h"
 
 /* Size of the Data Set */
 #define SIZE (40)
-void print_array(unsigned char *a,int n)
+void main()
+{
+        unsigned char test[SIZE] = {  34, 201, 190, 154,   8, 194,   2,   6,
+                                      114, 88,   45,  76, 123,  87,  25,  23,
+                                      200, 122, 150, 90,   92,  87, 177, 244,
+                                      201,   6,  12,  60,   8,   2,   5,  67,
+                                        7,  87, 250, 230,  99,   3, 100,  90};
+
+        print_array(sort_array(test,SIZE),SIZE);
+        print_statistics(sorted_array(test,SIZE),SIZE);
+}
+void print_array(unsigned char *a,unsigned char n)
 {
         printf("Elements of Array are as follows\n");
-        for(int i=0;i<n;i++)
+        for(unsigned char i=0;i<n;i++)
         {
                 printf("%d ",a[i]);
         }
         printf("\n");
 }
-float find_mean(unsigned char *a,int n)
+float find_mean(unsigned char *a,unsigned char n)
 {
 	float sum=0.0f;
-	for(int i=0;i<n;i++)
+	for(unsigned char i=0;i<n;i++)
         {
              sum=sum+a[i];
         }
 	return sum/n;
 }
-unsigned char * sorted_array(unsigned char *a,int n)
+unsigned char * sorted_array(unsigned char *a,unsigned char n)
 {
-	for(int i=0;i<n-1;i++)
+	for(unsigned char i=0;i<n-1;i++)
 	{
 		for(int j=0;j<n-i-1;j++)
 		{
@@ -61,9 +66,9 @@ unsigned char * sorted_array(unsigned char *a,int n)
 	}
 	return a;
 }
-unsigned char * sort_array(unsigned char *a,int n)
+unsigned char * sort_array(unsigned char *a,unsigned char n)
 {
-        for(int i=0;i<n-1;i++)
+        for(unsigned char i=0;i<n-1;i++)
         {
                 for(int j=0;j<n-i-1;j++)
                 {
@@ -78,14 +83,14 @@ unsigned char * sort_array(unsigned char *a,int n)
         }
         return a;
 }
-float find_median(unsigned char *a,int n)
+float find_median(unsigned char *a,unsigned char n)
 {
 	return ((float)a[n/2]+(float)a[(n+2)/2])/2;
 }
-int find_mode(unsigned char *a,int n)
+unsigned char find_mode(unsigned char *a,unsigned char n)
 {
-	int count =1,index=0,max=1;
-	for(int i=0;i<n-1;i++)
+	unsigned char count =1,index=0,max=1;
+	for(unsigned char i=0;i<n-1;i++)
 	{
 		if(a[i]!=a[i+1])
 		{
@@ -103,32 +108,19 @@ int find_mode(unsigned char *a,int n)
 	}
 	return a[index];	
 }
-unsigned char find_maximum(unsigned char *a,int n)
+unsigned char find_maximum(unsigned char *a,unsigned char n)
 {
 	return a[n-1];
 }
-unsigned char find_minimum(unsigned char *a,int n)
+unsigned char find_minimum(unsigned char *a,unsigned char n)
 {
         return a[0];
 }
-void print_statistics(unsigned char *a,int n)
+void print_statistics(unsigned char *a,unsigned char n)
 {
-printf("Maximum=%d\n",find_maximum(a,n));
-printf("Minimum=%d\n",find_minimum(a,n));
-printf("Mean=%f\n",find_mean(a,n));
-printf("Median=%f\n",find_median(a,n));
-printf("Mode=%d\n",find_mode(a,n));
+	printf("Maximum=%d\n",find_maximum(a,n));
+	printf("Minimum=%d\n",find_minimum(a,n));
+	printf("Mean=%f\n",find_mean(a,n));
+	printf("Median=%f\n",find_median(a,n));
+	printf("Mode=%d\n",find_mode(a,n));
 }
-void main() {
-
-  unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
-                              114, 88,   45,  76, 123,  87,  25,  23,
-                              200, 122, 150, 90,   92,  87, 177, 244,
-                              201,   6,  12,  60,   8,   2,   5,  67,
-                                7,  87, 250, 230,  99,   3, 100,  90};
-
- print_array(sort_array(test,SIZE),SIZE);
- print_statistics(sorted_array(test,SIZE),SIZE);
-}
-
-/* Add other Implementation File Code Here */
